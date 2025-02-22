@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem Regressiva - Star Wars</title>
+
+    <!-- Link para a fonte "Russo One" do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: 'Russo One', sans-serif; /* Usando a fonte Russo One */
+            text-align: center;
+        }
+
+        .countdown {
+            font-size: 30px; /* Tamanho grande da fonte */
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.8), 0 0 20px rgba(255, 204, 0, 0.6), 0 0 30px rgba(255, 204, 0, 0.4);
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="countdown" id="countdown"></div>
+    </div>
+
+    <script>
+        // Definir a data final da contagem regressiva
+        const endDate = new Date("March 1, 2025 00:00:00").getTime();
+
+        // Atualizar a contagem regressiva a cada segundo
+        const x = setInterval(function() {
+
+            // Data e hora atual
+            const now = new Date().getTime();
+
+            // Diferença entre a data final e a data atual
+            const distance = endDate - now;
+
+            // Cálculo dos dias, horas, minutos e segundos
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Exibir a contagem regressiva
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+            // Se a contagem regressiva terminar
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "Contagem finalizada";
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
